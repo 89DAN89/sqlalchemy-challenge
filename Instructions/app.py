@@ -65,7 +65,6 @@ def stations():
 
     Sdict = {}
 
-
     results = session.query(S.station, S.name).all()
     for x,stations in results:
         Sdict[x] = stations
@@ -74,26 +73,19 @@ def stations():
 
     return jsonify(Sdict) 
 
-
-
-
-
 @app.route("/api/v1.0/tobs")
 def tobs():
 
     session = Session(engine)
 
- 
     LDP = session.query(M.date).order_by(M.date.desc()).first()
     FDP = (dt.datetime.strptime(LDP[0],'%Y-%m-%d') \
                     - dt.timedelta(days=365)).strftime('%Y-%m-%d')
-
 
     measurments =   session.query(M.date, M.tobs).\
                 filter(M.date >= FDP).\
                 order_by(M.date).all()
 
-    
     tobslist = []
 
     for date, x in measurments:
@@ -104,7 +96,6 @@ def tobs():
     session.close()
 
     return jsonify(tobslist)
-
 
 @app.route("/api/v1.0/<start>")
 def Tstart(start):
@@ -136,8 +127,6 @@ def Tstart(start):
 @app.route("/api/v1.0/<start>/<end>")
 def temp_range_start_end(start,end):
 
-
-    
     session = Session(engine)
 
     startendlist = []
@@ -164,4 +153,3 @@ def temp_range_start_end(start,end):
        
 if __name__ == "__main__":
     app.run(debug=True)
-    
