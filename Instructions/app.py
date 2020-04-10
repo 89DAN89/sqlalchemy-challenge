@@ -35,7 +35,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def welcome():
-        """List of all returnable API routes."""
+        """List all available api routes."""
         return(
         f"/api/v1.0/precipitation"
         f"/api/v1.0/stations"
@@ -72,7 +72,7 @@ def stations():
 
     session.close()
 
-     return jsonify(S) 
+    return jsonify(S) 
 
 
 
