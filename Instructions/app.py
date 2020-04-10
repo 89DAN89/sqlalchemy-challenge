@@ -63,16 +63,16 @@ def stations():
 
     session = Session(engine)
 
-    S = {}
+    Sdict = {}
 
 
     results = session.query(S.station, S.name).all()
     for x,stations in results:
-        S[x] = stations
+        Sdict[x] = stations
 
     session.close()
 
-    return jsonify(S) 
+    return jsonify(Sdict) 
 
 
 
