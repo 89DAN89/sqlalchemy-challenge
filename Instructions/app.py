@@ -63,7 +63,7 @@ def stations():
 
     session = Session(engine)
 
-    stations = {}
+    S = {}
 
 
     results = session.query(S.station, S.name).all()
