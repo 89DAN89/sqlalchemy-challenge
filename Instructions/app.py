@@ -85,18 +85,18 @@ def tobs():
 
  
     LDP = session.query(M.date).order_by(M.date.desc()).first()
-    FDP = (dt.datetime.strptime(last_date[0],'%Y-%m-%d') \
+    FDP = (dt.datetime.strptime(LDP[0],'%Y-%m-%d') \
                     - dt.timedelta(days=365)).strftime('%Y-%m-%d')
 
 
-    results =   session.query(M.date, M.tobs).\
+    measurments =   session.query(M.date, M.tobs).\
                 filter(M.date >= FDP).\
                 order_by(M.date).all()
 
     
     tobslist = []
 
-    for date, x in results:
+    for date, x in measurments:
         dictionary3 = {}
         dictionary3[date] = x
         tobslist.append(dictionary3)
